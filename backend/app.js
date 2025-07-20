@@ -1,57 +1,48 @@
 const express = require('express');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 const mongoose = require('mongoose');
+const { errors } = require('celebrate');
+
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('./middlewares/cors');
+const auth = require('./middleware/auth');
+const { createUser, login } = require('./controllers/users');
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 
 const app = express();
 const PORT = 3000;
 
+// Conexión a MongoDB
+mongoose.connect('mongodb://127.0.0.1:27017/aroundb')
+  .then(() => console.log('✅ Conectado a MongoDB'))
+  .catch((err) => console.error('❌ Error de conexión:', err));
 
-const { errors } = require('celebrate');
+// Middlewares globales
+app.use(cors); // ✅ poner primero
+app.use(express.json()); // ✅ reemplaza a bodyParser
+app.use(requestLogger); // ✅ antes de las rutas
 
-const cors = require('./middlewares/cors');
+// Rutas públicas
+app.post('/signup', createUser);
+app.post('/signin', login);
 
-app.use((req, res, next) => {
-  req.user = { _id: '682555d408a75a9b57f6c2d8' };
-  next();
-});
+// Middleware de autorización
+app.use(auth);
 
+// Rutas protegidas
 app.use('/users', userRoutes);
 app.use('/cards', cardRoutes);
 
-app.use(express.json());
-
-mongoose.connect('mongodb://127.0.0.1:27017/aroundb')
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch((err) => console.error('Error de conexión:', err));
-
+// Ruta 404 para rutas no encontradas
 app.use((req, res) => {
   res.status(404).send({ message: 'Recurso solicitado no encontrado' });
 });
 
-
-app.use(cors);
-
-app.use(requestLogger);
-
-app.post('/signup', createUser);
-app.post('/signin', login);
-app.use('/users', usersRouter);
-app.post('/posts', postsRouter);
-
+// Logs y manejo de errores
 app.use(errorLogger);
+app.use(errors()); // errores de Celebrate
 
-app.use(errors()); // Manejo de errores de Celebrate
-
-// Middleware para rutas no encontradas
-app.use((req, res, next) => {
-  const error = new Error('Recurso solicitado no encontrado');
-  error.statusCode = 404;
-  next(error);
-});
-
-// Middleware genérico para manejo de errores
+// Middleware genérico de errores
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
   res.status(statusCode).json({
@@ -59,6 +50,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Escucha del servidor
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`🚀 Servidor escuchando en http://localhost:${PORT}`);
 });

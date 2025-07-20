@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const User = require('../models/user'); // Asegúrate que este archivo existe
-const { updateProfile, updateAvatar } = require('../controllers/users');
+const { updateProfile, updateAvatar, getCurrentUser } = require('../controllers/users');
 
 router.patch('/me', updateProfile);
 router.patch('/me/avatar', updateAvatar);
+
+router.get('/me', getCurrentUser);
 
 router.get('/', (req, res) => {
   User.find({})
