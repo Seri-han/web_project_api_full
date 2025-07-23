@@ -1,6 +1,7 @@
-const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 const getUsers = async (req, res, next) => {
@@ -26,7 +27,9 @@ const getUser = async (req, res, next) => {
 };
 
 const createUser = async (req, res, next) => {
-  const { name, about, avatar, email, password } = req.body;
+  const {
+    name, about, avatar, email, password,
+  } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -58,7 +61,7 @@ const updateUser = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { name, about },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     ).orFail(() => {
       const error = new Error('Usuario no encontrado');
       error.statusCode = 404;
@@ -77,7 +80,7 @@ const updateAvatar = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { avatar },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     ).orFail(() => {
       const error = new Error('Usuario no encontrado');
       error.statusCode = 404;
@@ -110,7 +113,7 @@ const login = async (req, res, next) => {
     const token = jwt.sign(
       { _id: user._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
-      { expiresIn: '7d' } // Expira en 7 días
+      { expiresIn: '7d' }, // Expira en 7 días
     );
     res.send({ token });
   } catch (err) {
