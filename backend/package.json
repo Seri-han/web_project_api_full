@@ -1,5 +1,5 @@
 {
-  "name": "web_project_around_express",
+  "name": "web_project_api_full",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Seri-han/web_project_around_express.git"
+    "url": "git+https://github.com/Seri-han/web_project_api_full.git"
   },
   "author": "Sarah Handal",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Seri-han/web_project_around_express/issues"
+    "url": "https://github.com/Seri-han/web_project_api_full/issues"
   },
-  "homepage": "https://github.com/Seri-han/web_project_around_express#readme",
+  "homepage": "https://github.com/Seri-han/web_project_api_full#readme",
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
