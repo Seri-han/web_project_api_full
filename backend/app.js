@@ -9,24 +9,28 @@ const { login, createUser } = require('./controllers/users');
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./utils/logger');
 
-const allowedOrigins = ['https://webaround.mooo.com',
+const allowedOrigins = [
+  'https://webaround.mooo.com',
   'http://webaround.mooo.com',
   'https://www.webaround.mooo.com',
-  'http://www.webaround.mooo.com'];
+  'http://www.webaround.mooo.com',
+];
+
 const corsOptions = {
   origin(origin, callback) {
+    // Permitir solicitudes sin origin (como curl o Postman)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not '
-        + 'allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
-    return callback(null, true);
+    return callback(new Error('CORS policy: Origin not allowed'), false);
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
+
+app.use(cors(corsOptions));
 
 require('dotenv').config();
 

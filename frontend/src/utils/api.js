@@ -1,29 +1,33 @@
 import { getToken } from "./token.js";
 
-const token = getToken();
+// const token = getToken();
 
 class Api {
     constructor(options) {
       this._baseUrl = options.baseUrl;
       this._headers = options.headers;
     }
-    async _makeRequest(endPoint, method = "GET", body = null) {
-      const options = {
-        method,
-        headers: { ...this._headers },
-      };
-      if (body) {
-        options.headers["Content-Type"] = "application/json";
-        options.body = JSON.stringify(body);
-      }
-      try {
-        const res = await fetch(`${this._baseUrl}/${endPoint}`, options);
-        if (!res.ok) throw new Error(`Error: ${res.status}`);
-        return await res.json();
-      } catch (err) {
-        return console.log(err);
-      }
-    }
+async _makeRequest(endPoint, method = "GET", body = null) {
+  const options = {
+    method,
+    headers: { 
+      ...this._headers, 
+      authorization: `Bearer ${getToken()}`
+    },
+  };
+  if (body) {
+    options.headers["Content-Type"] = "application/json";
+    options.body = JSON.stringify(body);
+  }
+  try {
+    const res = await fetch(`${this._baseUrl}/${endPoint}`, options);
+    if (!res.ok) throw new Error(`Error: ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    return console.log(err);
+  }
+}
+
     async getInitialCards() {
       return this._makeRequest("cards"); // Ruta correcta para obtener las tarjetas
     }
