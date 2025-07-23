@@ -1,6 +1,6 @@
 import { getToken } from "./token.js";
 
-// const token = getToken();
+const token = getToken();
 
 class Api {
     constructor(options) {
