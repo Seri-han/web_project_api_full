@@ -1,13 +1,17 @@
-const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const cors = require('cors');
+const express = require('express');
 const routesUsers = require('./routes/users');
 const routesCards = require('./routes/cards');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./utils/logger');
+
+require('dotenv').config();
+
+app.use(cors(corsOptions));
 
 const allowedOrigins = [
   'https://webaround.mooo.com',
@@ -29,10 +33,6 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
-
-app.use(cors(corsOptions));
-
-require('dotenv').config();
 
 const app = express();
 
