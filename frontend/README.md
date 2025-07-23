@@ -1,19 +1,60 @@
-Title
+Tripleten web_project_around_auth
+Proyecto 17: Alrededor de los EE.UU-REACT-auth
 
-"USA Around"
+Siguiendo con la creación de proyectos, en esta ocación es la creacion de una red social para compartir momentos inolvidables, usando REACT con VITE.
+Características del proyecto
 
-Description
+    HTML5 semántico
+    Flexbox
+    Position
+    Metodología BEM
+    CSS
+    FIGMA
+    GIT BASH
+    GITHUB
+    GITHUB PAGES
+    BRANCH
+    GRID LAYOUT
+    JAVASCRIPT JSX
+    API's
+    REACT
+    VITE
 
-This project refers to Sprints 11 to 16 of the Triple Ten Web Development course (formerly Practicum) and is a sequel to the previous project "EUA Afora" from the "web_project_4_ptbr" repository.
-In this project, all the code from the previous project is ported to the React library, where all the functionalities of the previous project remain active in this project but with the implementation of the new formatting.
+Dependencies
 
-Features
+    gh-pages: ^6.3.0
+    react: ^18.3.1
+    react-dom: ^18.3.1
+    react-hook-form: ^7.54.2
+    react-router
 
-- Command to open the "Edit", "Add", "Avatar" and "Screen Popup" popups (enlargement of the card image)
-- Functionality of the "Submit" button in the "Edit" popup to save the "name" and "about" (profession) information of the inputs
-- Functionality of the "Submit" button in the "Add" popup to create a new card
-- Functionality of the "Submit" button in the "Avatar" popup to update the profile photo (Avatar)
-- Button command to add a "Like" to cards with the like count included
-- Control of the delete buttons to delete a card
+Funsionalidad
 
-Demonstration
+La pagina es una galeria de arte, en la que se muestran los lugares de donde provienen nuestros colegas, reunidos en la ciudad Triple Ten iniciando con la bienvenida y descripción:
+
+-Se muestra el perfil de usuario
+-Sección de fotos
+-Edición de perfil
+-Borar tarjeta de imagen
+-Boton like funcional
+-Agregar nueva imagen
+-Registro
+-Inicio de sesión
+-Mantener sesión abierta
+-Cerado de sesión
+
+Mejoras
+
+En un futuro se agregaran mas features como agregar mas fotos y darle like, junto con:
+
+ -Guardado de datos base de datos
+ -Implementación Back-end
+
+React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+    @vitejs/plugin-react uses Babel for Fast Refresh
+    @vitejs/plugin-react-swc uses SWC for Fast Refresh
