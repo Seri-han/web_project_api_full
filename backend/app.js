@@ -1,20 +1,24 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
+const { errors } = require('celebrate');
+const cors = require('cors');
 const routesUsers = require('./routes/users');
 const routesCards = require('./routes/cards');
 const { login, createUser } = require('./controllers/users');
 const auth = require('./middleware/auth');
 const { requestLogger, errorLogger } = require('./utils/logger');
-const mongoose = require('mongoose');
-const allowedOrigins = ["https://around.kje.us", "http://localhost:3000", "https://api.around.kje.us"];
-let cors = require('cors');
-var corsOptions = {
-  origin: function (origin, callback) {
+
+const allowedOrigins = ['https://webaround.mooo.com',
+  'http://webaround.mooo.com',
+  'https://www.webaround.mooo.com',
+  'http://www.webaround.mooo.com'];
+const corsOptions = {
+  origin(origin, callback) {
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
-      var msg =
-        "The CORS policy for this site does not " +
-        "allow access from the specified Origin.";
+      const msg = 'The CORS policy for this site does not '
+        + 'allow access from the specified Origin.';
       return callback(new Error(msg), false);
     }
     return callback(null, true);
@@ -22,27 +26,27 @@ var corsOptions = {
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-}
+};
 
-const { errors } = require('celebrate');
 require('dotenv').config();
+
 const app = express();
 
 const { PORT = 3000 } = process.env;
 
 app.use(express.json());
 
-//Se conecta a la base de datos de mongodb en el puerto 27017 y la base de datos se llama aroundb
+// Se conecta a la base de datos de mongodb en el puerto 27017 y la base de datos se llama aroundb
 mongoose.connect('mongodb://127.0.0.1:27017/aroundb', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 app.use(cors(
   {
     origin: corsOptions,
-    credentials: true
-  }
+    credentials: true,
+  },
 ));
 
 app.use(requestLogger); // logger de peticiones
@@ -55,7 +59,7 @@ app.get('/crash-test', () => {
   }, 0);
 });
 
-app.post('/login' , login);
+app.post('/login', login);
 app.post('/signup', createUser);
 
 app.use('/', auth, routesUsers); // Middleware de autenticación aplicado

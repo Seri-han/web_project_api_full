@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.around.kje.us';
+export const BASE_URL = 'https://api.webaround.mooo.com';
 
 // La función registrada acepta los datos necesarios como argumentos, 
 // y envía una solicitud POST al endpoint dado.
