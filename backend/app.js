@@ -17,10 +17,10 @@ const app = express();
 
 // ----- CORS CONFIG -----
 const allowedOrigins = [
-  "https://around.kje.us",
-  "http://localhost:3000",
-  "https://api.around.kje.us"
+  'https://webaround.mooo.com',
+  'https://www.webaround.mooo.com',
 ];
+
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
@@ -35,7 +35,10 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
 
 // ----- LOGGERS Y MIDDLEWARE -----
 app.use(express.json());
