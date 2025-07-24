@@ -1,37 +1,45 @@
-Tripleten web_project_api_full
+🖼️ WebAround: Galería de Arte con Autenticación
 
-http://webaround.mooo.com/
-Instal Dependencies and Dev
+🔗 Visitar el sitio
+
+Este proyecto es una galería de arte en línea donde usuarios pueden registrarse, iniciar sesión y compartir imágenes de lugares que representan sus raíces. El backend está construido con Node.js y Express, conectado a MongoDB. El frontend está desarrollado con React y Vite, usando React Router y React Hook Form.
+🚀 Instalación
+
+Clona el repositorio y ejecuta:
 
 npm install
 
-Frontend
-Características del proyecto
+🧩 Frontend
+🌟 Tecnologías Usadas
+
+    React + Vite
 
     HTML5 semántico
-    Flexbox
-    Position
-    Metodología BEM
-    CSS
-    FIGMA
-    GIT BASH
-    GITHUB
-    GITHUB PAGES
-    BRANCH
-    GRID LAYOUT
-    JAVASCRIPT JSX
-    API's
-    REACT
-    VITE
 
-Dependencies
+    CSS (BEM, Flexbox, Grid, Position)
+
+    JSX
+
+    JavaScript moderno (ES6+)
+
+    Git + GitHub
+
+    GitHub Pages (despliegue anterior)
+
+    Figma (diseño)
+
+    React Router DOM
+
+    React Hook Form
+
+📦 Dependencias
 
 "react": "^18.3.1",
 "react-dom": "^18.3.1",
 "react-hook-form": "^7.54.2",
 "react-router-dom": "^7.3.0"
 
-Dev Dependencies
+🛠️ DevDependencies
 
 "@eslint/js": "^9.17.0",
 "@types/react": "^18.3.18",
@@ -44,43 +52,40 @@ Dev Dependencies
 "globals": "^15.14.0",
 "vite": "^6.0.5"
 
-Funsionalidad
+⚙️ Funcionalidad
 
-La pagina es una galeria de arte, en la que se muestran los lugares de donde provienen nuestros colegas, reunidos en la ciudad Triple Ten iniciando con la bienvenida y descripción:
+    Registro e inicio de sesión
 
--Se muestra el perfil de usuario
--Sección de fotos
--Edición de perfil
--Borar tarjeta de imagen
--Boton like funcional
--Agregar nueva imagen
--Registro
--Inicio de sesión
--Mantener sesión abierta
--Cerado de sesión
+    Edición del perfil
 
-React + Vite
+    Visualización y carga de imágenes (tarjetas)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+    Likes y eliminación de tarjetas
 
-Currently, two official plugins are available:
+    Mantener sesión activa
 
-    @vitejs/plugin-react uses Babel for Fast Refresh
-    @vitejs/plugin-react-swc uses SWC for Fast Refresh
+    Cierre de sesión
 
-Backend
-Tecnologias usadas en el proyecto
+    Validaciones con formularios controlados
 
-    NodeJS
-    GIT BASH
-    GITHUB
-    BRANCH
-    API's
-    MongoDBCompass
-    Google Cloud
-    Postman(pruebas)
+🔧 Backend
+🛠️ Tecnologías
 
-Dependencies backend
+    Node.js
+
+    Express
+
+    MongoDB + Mongoose
+
+    dotenv
+
+    Postman (pruebas)
+
+    Google Cloud (despliegue)
+
+    Git + GitHub
+
+📦 Dependencias
 
 "bcryptjs": "^3.0.2",
 "celebrate": "^15.0.3",
@@ -94,49 +99,53 @@ Dependencies backend
 "validator": "^13.15.0",
 "winston": "^3.17.0"
 
-Developer Dependencies
+🧪 DevDependencies
 
 "eslint": "^8.56.0",
 "eslint-config-airbnb-base": "^15.0.0",
 "eslint-plugin-import": "^2.31.0",
 "nodemon": "^3.1.9"
 
-Funsionalidad backend
+⚙️ Funcionalidad
 
-La pagina es una galeria de arte, en la que se muestran los lugares de donde provienen nuestros colegas, reunidos en la ciudad Triple Ten iniciando con la bienvenida y descripción:
+    API RESTful protegida por autenticación con JWT
 
--Servidor express
--Dar acceso a la Api mediante rutas
--Utilizacion de mongoose para la conexión a la base de datos
+    Controladores y middlewares organizados
 
-Rutas
+    Validación robusta con Joi y Celebrate
 
-Las rutas usan los metodos HTTP
+    Manejo centralizado de errores
 
-  *Get: Obtención de datos(usuarios/tarjetas) unitarios mediante su ID o en su totalidad.
-  *Put: Dar like a una tarjeta mediante su ID.
-  *Post: Crear nuevos usuarios o tarjetas.
-  *Patch: Actualizar la información de los usuarios(name, about, avatar) mediante su ID.
-  *Delete: Borrar o dar dislike a una tarjeta mediante su ID.
+    Logging con Winston
 
-About
-No description, website, or topics provided.
-Resources
-Readme
-Activity
-Stars
-0 stars
-Watchers
-1 watching
-Forks
-0 forks
-Report repository
-Releases
-No releases published
-Packages
-No packages published
-Languages
+    CORS y configuración segura
 
-JavaScript 82.0%
-CSS 17.3%
-HTM
+📡 Rutas de la API
+Método	Ruta	Descripción
+GET	/users/me	Obtener info del usuario actual
+GET	/cards	Obtener todas las tarjetas
+POST	/signup	Registro de nuevo usuario
+POST	/signin	Inicio de sesión
+POST	/cards	Crear una nueva tarjeta
+PATCH	/users/me	Actualizar nombre y descripción
+PATCH	/users/me/avatar	Cambiar avatar del usuario
+PUT	/cards/:cardId/likes	Dar like a una tarjeta
+DELETE	/cards/:cardId	Borrar una tarjeta
+DELETE	/cards/:cardId/likes	Quitar like de una tarjeta
+
+✨ Características Adicionales
+
+    Despliegue completo en Google Cloud VM con dominio personalizado
+
+    Persistencia del servidor con PM2
+
+    Configuración de HTTPS opcional
+
+    Código estructurado y modular
+
+👩‍💻 Autora
+
+Sarah Handal
+Frontend & Backend Developer | TripleTen Bootcamp
+
+GitHub: @Seri-han
